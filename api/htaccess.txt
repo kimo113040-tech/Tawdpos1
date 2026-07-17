@@ -1,0 +1,21 @@
+# منع عرض محتويات المجلد
+Options -Indexes
+
+# السماح بالوصول إلى ملفات PHP فقط
+<FilesMatch "\.(php)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# منع الوصول إلى الملفات الحساسة
+<FilesMatch "\.(sql|txt|md|json|log|ini|config)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# إعدادات CORS
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+</IfModule>
